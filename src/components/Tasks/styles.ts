@@ -41,4 +41,12 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 10,
   },
+
+  tasksContainer: {
+    marginTop: 20,
+  },
+
+  scrollView: {
+    marginBottom: 325,
+  },
 });

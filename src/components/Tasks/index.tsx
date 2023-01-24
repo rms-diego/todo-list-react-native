@@ -1,7 +1,8 @@
-import { Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { styles } from "./styles";
 
 import { WithoutTasks } from "../WithoutTasks";
+import { CardTask } from "../CardTask";
 
 export function Tasks() {
   return (
@@ -18,7 +19,26 @@ export function Tasks() {
         </View>
       </View>
 
-      <WithoutTasks />
+      {/* <WithoutTasks /> */}
+
+      <View style={styles.tasksContainer}>
+        <ScrollView
+          style={styles.scrollView}
+          showsVerticalScrollIndicator={false}
+        >
+          <CardTask />
+          <CardTask />
+          <CardTask />
+          <CardTask />
+          <CardTask />
+          <CardTask />
+          <CardTask />
+          <CardTask />
+          <CardTask />
+          <CardTask />
+          <CardTask />
+        </ScrollView>
+      </View>
     </View>
   );
 }
