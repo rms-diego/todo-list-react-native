@@ -38,6 +38,19 @@ export function Home() {
     setCurrentTask("");
   };
 
+  const toggleConcludeTask = (content: string) => {
+    const allTasks = tasks.map((task) => {
+      if (task.content === content) {
+        task.conclude = !task.conclude;
+        return task;
+      }
+
+      return task;
+    });
+
+    setTasks([...allTasks]);
+  };
+
   return (
     <View style={styles.container}>
       <Header />
@@ -46,7 +59,7 @@ export function Home() {
         changeCurrentTask={changeCurrentTask}
         addTask={addTask}
       />
-      <Tasks tasks={tasks} />
+      <Tasks tasks={tasks} toggleConcludeTask={toggleConcludeTask} />
     </View>
   );
 }

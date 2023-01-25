@@ -10,20 +10,18 @@ import { COLORS } from "../../styles/colors";
 
 interface Props {
   content: string;
+  conclude: boolean;
+  toggleConcludeTask: (content: string) => void;
 }
 
-export function CardTask({ content }: Props) {
-  const [isConclude, setIsConclude] = useState(false);
-
+export function CardTask({ content, conclude, toggleConcludeTask }: Props) {
   const handleToggleConcludeTask = () => {
-    setIsConclude((prevState) => !prevState);
+    toggleConcludeTask(content);
   };
 
-  const isTaskConcludeColor = isConclude
-    ? COLORS["darkPurple"]
-    : COLORS["blue"];
+  const isTaskConcludeColor = conclude ? COLORS["darkPurple"] : COLORS["blue"];
 
-  const isTaskConcludeTextStyle = isConclude
+  const isTaskConcludeTextStyle = conclude
     ? styles.cardTaskTextConclude
     : styles.cardTaskTextTodo;
 
@@ -32,7 +30,7 @@ export function CardTask({ content }: Props) {
       <Checkbox
         color={isTaskConcludeColor}
         style={styles.cardCheckBox}
-        value={isConclude}
+        value={conclude}
         onValueChange={handleToggleConcludeTask}
       />
 

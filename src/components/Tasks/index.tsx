@@ -8,9 +8,10 @@ import { TaskType } from "../../screens/Home";
 
 interface Props {
   tasks: TaskType[];
+  toggleConcludeTask: (content: string) => void;
 }
 
-export function Tasks({ tasks }: Props) {
+export function Tasks({ tasks, toggleConcludeTask }: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.headerTasks}>
@@ -35,6 +36,8 @@ export function Tasks({ tasks }: Props) {
               <CardTask
                 key={`${task.content} ${index}`}
                 content={task.content}
+                conclude={task.conclude}
+                toggleConcludeTask={toggleConcludeTask}
               />
             ))}
           </ScrollView>
