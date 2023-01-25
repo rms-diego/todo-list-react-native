@@ -4,7 +4,13 @@ import { styles } from "./styles";
 import { WithoutTasks } from "../WithoutTasks";
 import { CardTask } from "../CardTask";
 
-export function Tasks() {
+import { TaskType } from "../../screens/Home";
+
+interface Props {
+  tasks: TaskType[];
+}
+
+export function Tasks({ tasks }: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.headerTasks}>
@@ -19,26 +25,23 @@ export function Tasks() {
         </View>
       </View>
 
-      {/* <WithoutTasks /> */}
-
-      <View style={styles.tasksContainer}>
-        <ScrollView
-          style={styles.scrollView}
-          showsVerticalScrollIndicator={false}
-        >
-          <CardTask />
-          <CardTask />
-          <CardTask />
-          <CardTask />
-          <CardTask />
-          <CardTask />
-          <CardTask />
-          <CardTask />
-          <CardTask />
-          <CardTask />
-          <CardTask />
-        </ScrollView>
-      </View>
+      {tasks.length > 0 ? (
+        <View style={styles.tasksContainer}>
+          <ScrollView
+            style={styles.scrollView}
+            showsVerticalScrollIndicator={false}
+          >
+            {tasks.map((task, index) => (
+              <CardTask
+                key={`${task.content} ${index}`}
+                content={task.content}
+              />
+            ))}
+          </ScrollView>
+        </View>
+      ) : (
+        <WithoutTasks />
+      )}
     </View>
   );
 }

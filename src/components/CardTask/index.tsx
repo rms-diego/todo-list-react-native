@@ -8,7 +8,11 @@ import Trash from "../../assets/trash.svg";
 
 import { COLORS } from "../../styles/colors";
 
-export function CardTask() {
+interface Props {
+  content: string;
+}
+
+export function CardTask({ content }: Props) {
   const [isConclude, setIsConclude] = useState(false);
 
   const handleToggleConcludeTask = () => {
@@ -32,9 +36,7 @@ export function CardTask() {
         onValueChange={handleToggleConcludeTask}
       />
 
-      <Text style={isTaskConcludeTextStyle}>
-        Integer urna interdum massa libero auctor neque turpis turpis semper.
-      </Text>
+      <Text style={isTaskConcludeTextStyle}>{content}</Text>
 
       <TouchableOpacity style={styles.cardButtonTrash}>
         <Trash />
