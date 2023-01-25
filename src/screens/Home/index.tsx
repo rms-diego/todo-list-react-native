@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { View } from "react-native";
+import { Alert, View } from "react-native";
 import { styles } from "./styles";
 
 import { Header } from "../../components/Header";
@@ -19,6 +19,19 @@ export function Home() {
   const changeCurrentTask = (text: string) => setCurrentTask(text);
 
   const addTask = () => {
+    const taskAlreadyExists = tasks.find(
+      (task) => task.content === currentTask
+    );
+
+    if (taskAlreadyExists) {
+      setCurrentTask("");
+
+      return Alert.alert(
+        "Essa Tarefa já existe",
+        "Crie uma tarefa diferente daquelas que já foram criadas antes"
+      );
+    }
+
     const task = { content: currentTask.trim(), conclude: false };
 
     setTasks((prevState) => [...prevState, task]);
