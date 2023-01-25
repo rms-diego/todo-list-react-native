@@ -13,17 +13,25 @@ interface Props {
 }
 
 export function Tasks({ tasks, toggleConcludeTask, deleteTask }: Props) {
+  const allTasksQuantity = tasks.length;
+
+  const allConcludesTasksQuantity = tasks.filter(
+    (tasks) => tasks.conclude === true
+  ).length;
+
   return (
     <View style={styles.container}>
       <View style={styles.headerTasks}>
         <View style={styles.headerContainerContentTasks}>
           <Text style={styles.headerCreatedTaskText}>Criadas</Text>
-          <Text style={styles.headerCounterText}>0</Text>
+          <Text style={styles.headerCounterText}>{allTasksQuantity}</Text>
         </View>
 
         <View style={styles.headerContainerContentTasks}>
           <Text style={styles.headerConcludeTaskText}>Concluídas</Text>
-          <Text style={styles.headerCounterText}>0</Text>
+          <Text style={styles.headerCounterText}>
+            {allConcludesTasksQuantity}
+          </Text>
         </View>
       </View>
 
