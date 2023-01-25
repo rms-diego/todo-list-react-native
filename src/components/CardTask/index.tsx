@@ -12,9 +12,15 @@ interface Props {
   content: string;
   conclude: boolean;
   toggleConcludeTask: (content: string) => void;
+  deleteTask: (content: string) => void;
 }
 
-export function CardTask({ content, conclude, toggleConcludeTask }: Props) {
+export function CardTask({
+  content,
+  conclude,
+  toggleConcludeTask,
+  deleteTask,
+}: Props) {
   const handleToggleConcludeTask = () => {
     toggleConcludeTask(content);
   };
@@ -24,6 +30,8 @@ export function CardTask({ content, conclude, toggleConcludeTask }: Props) {
   const isTaskConcludeTextStyle = conclude
     ? styles.cardTaskTextConclude
     : styles.cardTaskTextTodo;
+
+  const handleDeleteTask = () => deleteTask(content);
 
   return (
     <View style={styles.cardContainer}>
@@ -36,7 +44,10 @@ export function CardTask({ content, conclude, toggleConcludeTask }: Props) {
 
       <Text style={isTaskConcludeTextStyle}>{content}</Text>
 
-      <TouchableOpacity style={styles.cardButtonTrash}>
+      <TouchableOpacity
+        style={styles.cardButtonTrash}
+        onPress={handleDeleteTask}
+      >
         <Trash />
       </TouchableOpacity>
     </View>

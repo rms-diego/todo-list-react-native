@@ -51,6 +51,12 @@ export function Home() {
     setTasks([...allTasks]);
   };
 
+  const deleteTask = (content: string) => {
+    const allTasks = tasks.filter((task) => task.content !== content);
+
+    setTasks([...allTasks]);
+  };
+
   return (
     <View style={styles.container}>
       <Header />
@@ -59,7 +65,11 @@ export function Home() {
         changeCurrentTask={changeCurrentTask}
         addTask={addTask}
       />
-      <Tasks tasks={tasks} toggleConcludeTask={toggleConcludeTask} />
+      <Tasks
+        tasks={tasks}
+        toggleConcludeTask={toggleConcludeTask}
+        deleteTask={deleteTask}
+      />
     </View>
   );
 }

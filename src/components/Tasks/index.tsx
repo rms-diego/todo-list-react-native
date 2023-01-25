@@ -9,9 +9,10 @@ import { TaskType } from "../../screens/Home";
 interface Props {
   tasks: TaskType[];
   toggleConcludeTask: (content: string) => void;
+  deleteTask: (content: string) => void;
 }
 
-export function Tasks({ tasks, toggleConcludeTask }: Props) {
+export function Tasks({ tasks, toggleConcludeTask, deleteTask }: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.headerTasks}>
@@ -38,6 +39,7 @@ export function Tasks({ tasks, toggleConcludeTask }: Props) {
                 content={task.content}
                 conclude={task.conclude}
                 toggleConcludeTask={toggleConcludeTask}
+                deleteTask={deleteTask}
               />
             ))}
           </ScrollView>
